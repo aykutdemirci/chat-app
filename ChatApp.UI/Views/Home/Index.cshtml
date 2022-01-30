@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="row mt-3">
+
+    <form class="w-100">
+        <input type="hidden" id="txt_UserName" />
+        <fieldset disabled id="fds_Page">
+
+            <div class="row">
+                <div class="col-9">
+                    <fieldset disabled id="fds_ChatArea">
+                        <div class="card">
+                            <div class="card-header d-flex">
+                                <span class="mr-auto">Sohbet</span>
+                                <button type="button" function="leave" class="btn btn-sm btn-secondary">Odadan Ayrıl</button>
+                            </div>
+                            <div class="card-body">
+                                <div id="chat_Area"></div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Mesaj:</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="txt_Message">
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-light border" id="btn_Send">Gönder</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-3">
+                    <div class="card">
+                        <div class="card-header">Odalar</div>
+                        <div class="card-body p-2">
+                            <ul class="list-group" id="lst_ChatRooms">
+                                @foreach (var item in ViewBag.ChatRooms)
+                                {
+                                    <li class="list-group-item p-1 d-flex align-items-center">
+                                        <span class="mr-auto room-name">@item.Name</span>
+                                        @*@if (item.UsersInRoom != 0)
+                                        {
+                                            <span class="badge badge-warning badge-pill">@item.UsersInRoom</span>
+                                        }*@
+                                        <button type="button" function="join" room-id="@item.Id" class="btn btn-sm btn-success ml-2">Katıl</button>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+<div class="modal fade" id="mdl_Login" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Giriş Yap</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txt_NickName">Takma İsim</label>
+                    <input type="text" class="form-control" placeholder="Bir takma isim giriniz" id="txt_NickName">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn_Login">Giriş</button>
+            </div>
+        </div>
+    </div>
+</div>
