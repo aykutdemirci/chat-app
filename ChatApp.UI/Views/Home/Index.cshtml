@@ -11,14 +11,14 @@
                 <div class="col-9">
                     <fieldset disabled id="fds_ChatArea">
                         <div class="card">
-                            <div class="card-header d-flex">
+                            <div class="card-header d-flex p-2">
                                 <span class="mr-auto">Sohbet</span>
                                 <button type="button" function="leave" class="btn btn-sm btn-secondary">Odadan Ayrıl</button>
                             </div>
                             <div class="card-body">
                                 <div id="chat_Area"></div>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer p-2">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">Mesaj:</span>
@@ -34,7 +34,9 @@
                 </div>
                 <div class="col-3">
                     <div class="card">
-                        <div class="card-header">Odalar</div>
+                        <div class="card-header p-2">
+                            <span class="mr-auto">Odalar</span>
+                        </div>
                         <div class="card-body p-2">
                             <ul class="list-group" id="lst_ChatRooms">
                                 @foreach (var item in ViewBag.ChatRooms)
@@ -42,13 +44,21 @@
                                     <li class="list-group-item p-1 d-flex align-items-center">
                                         <span class="mr-auto room-name">@item.Name</span>
                                         @*@if (item.UsersInRoom != 0)
-                                        {
+                                            {
                                             <span class="badge badge-warning badge-pill">@item.UsersInRoom</span>
-                                        }*@
+                                            }*@
                                         <button type="button" function="join" room-id="@item.Id" class="btn btn-sm btn-success ml-2">Katıl</button>
                                     </li>
                                 }
                             </ul>
+                        </div>
+                        <div class="card-footer p-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="txt_RoomName" placeholder="Oda ismi giriniz..."/>
+                                <div class="input-group-append">
+                                    <button type="button" function="create-room" class="btn btn-sm btn-primary">Oda Ekle</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

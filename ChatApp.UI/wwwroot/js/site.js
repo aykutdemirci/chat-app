@@ -35,6 +35,21 @@ $(document).ready(function () {
         }
     });
 
+    $('button[function="create-room"]').click(function () {
+
+        let roomName = $('#txt_RoomName').val();
+        createRoom(roomName);
+    });
+
+    $('#txt_RoomName').keyup(function (e) {
+
+        if (e.which == 13) {
+
+            let roomName = $('#txt_RoomName').val();
+            createRoom(roomName);
+        }
+    });
+
     $('button[function="join"]').click(function () {
 
         var button = $('#lst_ChatRooms li.active').find('button[function="join"]');
@@ -246,6 +261,26 @@ $(document).ready(function () {
 
         }).fail(function myfunction() {
 
+            AlertMessage.UnknownError();
+        });
+    }
+
+    function createRoom(roomName) {
+
+        debugger;
+        if (!roomName?.trim()) return;
+
+        $.post('/Home/CreateRoom', { roomName: roomName }).done(function (response) {
+
+            if (response.result == false) {
+
+                AlertMessage.TryAgain();
+                return;
+            }
+
+            window.location.href = '/Home/Index';
+
+        }).fail(function () {
             AlertMessage.UnknownError();
         });
     }

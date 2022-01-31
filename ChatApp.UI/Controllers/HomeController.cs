@@ -66,5 +66,11 @@ namespace ChatApp.UI.Controllers
 
             return Json(new { lastMessages });
         }
+
+        public IActionResult CreateRoom(string roomName)
+        {
+            bool created = ChatRoomHelper.CreateChatRoom(roomName);
+            return Json(new { result = created });
+        }
     }
 }
