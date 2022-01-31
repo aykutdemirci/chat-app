@@ -14,7 +14,6 @@ namespace ChatApp.UI.Controllers
     {
         public HomeController(ServiceFactory serviceFactory) : base(serviceFactory)
         {
-            //RedisCacheService.Remove(CacheKeys.LastMessages);
         }
 
         public IActionResult Index()
