@@ -14,7 +14,7 @@ namespace ChatApp.Db.AppDbContext
         {
             modelBuilder.Entity<ChatRoom>().HasMany(r => r.Messages).WithOne(m => m.Room).OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<ChatRoom>().HasData(new ChatRoom { Id = 1, Name = "Default" }, new ChatRoom { Id = 2, Name = "Oda-1" });
+            //modelBuilder.Entity<ChatRoom>().HasData(new ChatRoom { Id = 1, Name = "Default" }, new ChatRoom { Id = 2, Name = "Oda-1" });
 
             base.OnModelCreating(modelBuilder);
         }
